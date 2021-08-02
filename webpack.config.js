@@ -7,6 +7,7 @@ module.exports = {
   output: {
     filename: 'bundle.[hash].js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   mode: 'production',
   module: {
@@ -31,4 +32,7 @@ module.exports = {
       template: './public/index.html',
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+  }
 };
