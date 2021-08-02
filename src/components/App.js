@@ -1,10 +1,13 @@
 import React, {useEffect, useState } from "react";
 import Scoket from './../utils/Socket'
+import Modal from "./utils/Modal";
+
 let socket;
 
 const App = () => {
   
   const [username, setUsername ] = useState("");
+  const [closeModal, setCloseModal ] = useState(false);
 
   useEffect(()=>{
     socket = Scoket
@@ -39,6 +42,13 @@ const App = () => {
       <input type="text" value={username} onChange={(e)=>{handlerInputUsername(e)} }></input>
       <button onClick={(e)=>{handlerSendData(e)}}>Enviar username</button>
       <button onClick={(e)=>{handlerDesconnectionSocket(e)}}>Desconectar</button>
+      <button onClick={(e)=> {setCloseModal(true)}}>Abir modal</button>
+      <Modal 
+        isVisible={closeModal}
+        title={"Title: "+username}
+        body={ (<div>Body:</div> )}
+        footer={"Footer: "+username}
+        close={(e)=> {setCloseModal(!closeModal)}}/>
     </div>
   );
 };
